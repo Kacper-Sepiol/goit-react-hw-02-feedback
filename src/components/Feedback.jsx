@@ -31,6 +31,11 @@ export class Feedback extends React.Component {
     this.setState({ total: updatedTotalFeedback });
   }
 
+  countPositiveFeedbackPercentage() {
+    const totalSumFeedback = this.totalFeedback.total;
+    const all = totalSumFeedback * 100;
+  }
+
   goodOnClick() {
     this.counterGoodButton += 1;
     this.setState({ good: this.counterGoodButton });
