@@ -13,6 +13,10 @@ export class Feedback extends React.Component {
       total: 0,
     };
 
+    this.totalSumFeedback = {
+      totalSum: 0,
+    };
+
     this.counterGoodButton = 0;
     this.counterNeutralButton = 0;
     this.counterBadButton = 0;
@@ -32,8 +36,10 @@ export class Feedback extends React.Component {
   }
 
   countPositiveFeedbackPercentage() {
-    const totalSumFeedback = this.totalFeedback.total;
-    const all = totalSumFeedback * 100;
+    const totalSumFeedback = this.state.good / this.totalFeedback.total;
+    const i = { ...this.totalSumFeedback };
+    this.totalSumFeedback = i;
+    this.setState({ totalSum: totalSumFeedback });
   }
 
   goodOnClick() {
@@ -57,6 +63,7 @@ export class Feedback extends React.Component {
   render() {
     const { good, neutral, bad } = this.state;
     const { total } = this.totalFeedback;
+    const { totalSum } = this.totalSumFeedback;
     return (
       <>
         <h1>Please leave feedback</h1>
@@ -77,6 +84,7 @@ export class Feedback extends React.Component {
         <p>Neutral: {neutral}</p>
         <p>Bad: {bad}</p>
         <p>Total: {total}</p>
+        <p>Positive feedback: {totalSum}%</p>
       </>
     );
   }
