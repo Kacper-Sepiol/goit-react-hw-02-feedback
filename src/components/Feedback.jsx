@@ -36,28 +36,35 @@ export class Feedback extends React.Component {
   }
 
   countPositiveFeedbackPercentage() {
-    const totalSumFeedback = this.state.good / this.totalFeedback.total;
-    const i = { ...this.totalSumFeedback };
-    this.totalSumFeedback = i;
-    this.setState({ totalSum: totalSumFeedback });
+    const { good } = this.state;
+    const { total } = this.totalFeedback;
+    const totalSumFeedbackUpdated = { ...this.totalSumFeedback };
+    if (total > 0) {
+      totalSumFeedbackUpdated.totalSum = (good / total) * 100;
+      this.totalSumFeedback = totalSumFeedbackUpdated;
+      this.setState({ totalSum: totalSumFeedbackUpdated });
+    }
   }
 
   goodOnClick() {
     this.counterGoodButton += 1;
     this.setState({ good: this.counterGoodButton });
     this.countTotalFeedback();
+    this.countPositiveFeedbackPercentage();
   }
 
   neutralOnClick() {
     this.counterNeutralButton += 1;
     this.setState({ neutral: this.counterNeutralButton });
     this.countTotalFeedback();
+    this.countPositiveFeedbackPercentage();
   }
 
   badOnClick() {
     this.counterBadButton += 1;
     this.setState({ bad: this.counterBadButton });
     this.countTotalFeedback();
+    this.countPositiveFeedbackPercentage();
   }
 
   render() {
