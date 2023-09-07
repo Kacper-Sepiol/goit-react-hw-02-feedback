@@ -13,11 +13,11 @@ const Statistics = ({ good, neutral, bad, total, positivePercentage }) => (
 );
 
 Statistics.propTypes = {
-  good: PropTypes.object.isRequired,
-  netural: PropTypes.object.isRequired,
-  bad: PropTypes.object.isRequired,
-  total: PropTypes.object.isRequired,
-  positivePercentage: PropTypes.object.isRequired,
+  good: PropTypes.number.isRequired,
+  netural: PropTypes.number,
+  bad: PropTypes.number.isRequired,
+  total: PropTypes.number.isRequired,
+  positivePercentage: PropTypes.number.isRequired,
 };
 
 export default Statistics;
